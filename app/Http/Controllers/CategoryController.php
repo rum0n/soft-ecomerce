@@ -8,16 +8,8 @@ use DB;
 
 class CategoryController extends Controller
 {
-    public function men_cloth(){
-    	return view('frontEnd.category.mens_cloth');
-    }
-
-    public function women_cloth(){
-    	return view('frontEnd.category.women_cloth');
-    }
-
     public function categoryAdd(){
-    	return view('admin.category.category-add');
+        return view('admin.category.category-add');
     }
 
     public function categoryEntry(Request $req){

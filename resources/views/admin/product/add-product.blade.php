@@ -15,7 +15,7 @@
                  <li>{{$error}}</li>  
                 @endforeach
               </div>
-          @endif
+          	@endif
 
 			
 			<div class="col-lg-6">
@@ -46,7 +46,7 @@
 					</div>
 					<div class="form-group">
 						<label>Description</label>
-						<textarea class="form-control" placeholder="Enter Product Description" name="Product_description"></textarea>
+						<textarea class="form-control" placeholder="Enter Product Description" name="product_description"></textarea>
 					</div>
 					<div class="form-group">
 						<label>Picture</label>

@@ -11,51 +11,77 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'FrontController@index')->name('home');
+    /*
+    ===========================
+        Product Routes
+    ===========================
+    */
+Route::get('/catProduct/{id}', 'FrontController@catProduct')->name('cat_product');
+Route::get('/singleView/{id}', 'FrontController@singleProduct')->name('single_product');
 
-// Route::get('/men/cloth', 'CategoryController@men_cloth');
+    /*
+    ===========================
+        Product Routes Ends
+    ===========================
+    */
 
-// Route::get('/women/cloth', 'CategoryController@women_cloth');
+    /*
+    ===========================
+        Cart Routes
+    ===========================
+    */
+        Route::post('/cart/add', 'CartController@store')->name('add_to_cart');
+        Route::post('/cart/show', 'CartController@index')->name('cart_show');
 
+    /*
+   ===========================
+       Cart Routes
+   ===========================
+   */
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
-/*
-===========================
-	Category Routes
-===========================
-*/
+Route::group(['middleware' => 'authMiddleware'],function() {
 
-Route::get('/category/add', 'CategoryController@categoryAdd');
-Route::post('/category/entry', 'CategoryController@categoryEntry');
+    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
 
-Route::get('/category/show', 'CategoryController@categoryShow');
-Route::get('/cat_status/edit/{p_id}', 'CategoryController@categoryPBS');
+    /*
+    ===========================
+        Category Routes
+    ===========================
+    */
 
-Route::get('/category/edit/{id}', 'CategoryController@categoryEdit');
-Route::post('/category/update', 'CategoryController@categoryUpdate');
+    Route::get('/category/add', 'CategoryController@categoryAdd');
+    Route::post('/category/entry', 'CategoryController@categoryEntry');
 
-Route::get('/category/delete/{delete_id}', 'CategoryController@categoryDelete');
+    Route::get('/category/show', 'CategoryController@categoryShow');
+    Route::get('/cat_status/edit/{p_id}', 'CategoryController@categoryPBS');
 
+    Route::get('/category/edit/{id}', 'CategoryController@categoryEdit');
+    Route::post('/category/update', 'CategoryController@categoryUpdate');
 
-/*
-===========================
-	Product Routes
-===========================
-*/
+    Route::get('/category/delete/{delete_id}', 'CategoryController@categoryDelete');
 
-Route::get('/add/product', 'ProductController@addProduct');
-Route::post('/product/entry', 'ProductController@insertProduct');
+    /*
+    ===========================
+        Product Routes
+    ===========================
+    */
 
-Route::get('/all/product', 'ProductController@productShow');
-Route::get('/pro_status/edit/{porduct_id}', 'ProductController@productStatus');
+    Route::get('/add/product', 'ProductController@addProduct');
+    Route::post('/product/entry', 'ProductController@insertProduct');
 
-Route::get('/product/singleView/{porduct_id}', 'ProductController@singleView');
+    Route::get('/all/product', 'ProductController@productShow');
+    Route::get('/pro_status/edit/{porduct_id}', 'ProductController@productStatus');
 
-Route::get('/product/edit/{p_id}', 'ProductController@productEdit')->name('pro_edit');
-Route::post('/product/update', 'ProductController@productUpdate')->name('pro_update');
+    Route::get('/product/singleView/{porduct_id}', 'ProductController@singleView');
 
-Route::get('/product/delete/{delete_id}', 'ProductController@productDelete');
+    Route::get('/product/edit/{p_id}', 'ProductController@productEdit')->name('pro_edit');
+    Route::post('/product/update', 'ProductController@productUpdate')->name('pro_update');
+
+    Route::get('/product/delete/{delete_id}', 'ProductController@productDelete');
+
+});
 

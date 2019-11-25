@@ -14,7 +14,7 @@
 		<h3 style="color: blue;">{{ Session::get('message') }}</h3>
 
 	
-		<?php $i = 0; ?>
+
 		<table align="center" class="table table-bordered table-hover table-condensed table-striped">
 			<tr>
 				<th>Name</th><td>{{ $single_product->productName }}</td>
@@ -45,9 +45,9 @@
 		</table>
 		<div>
 			<center>
-				<a href="{{ url('/product/edit/'.$single_product->id) }}" class="btn btn-primary btn-lg">  Edit </a>
+				<a href="{{ url('/product/edit/'.$single_product->p_id) }}" class="btn btn-primary" title="Edit Product">Edit</a>
 
-				<a href="{{ url('/product/delete/'.$single_product->id) }}" onclick="return confirm('Are You sure to delete!')" class="btn btn-danger btn-lg"> Delete </a>
+				<a href="{{ url('/product/delete/'.$single_product->p_id) }}" onclick="return confirm('Are You sure to delete!')" class="btn btn-danger "> Delete </a>
 			</center>
 		</div>
 		<br><br>

@@ -13,8 +13,11 @@ Author URL: http://soft-all.com/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
+		
 <!-- //for-mobile-apps -->
 <link href="{{ asset('frontEnd/css') }}/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ asset('frontEnd/css') }}/flexslider.css" type="text/css" media="screen" />
+
 <!-- pignose css -->
 <link href="{{ asset('frontEnd/css') }}/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
 
@@ -50,5 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 @include('frontEnd.inc.footer')
 
+
+<script src="{{ asset('frontEnd/js') }}/imagezoom.js"></script>
+<script src="{{ asset('frontEnd/js') }}/jquery.flexslider.js"></script>
 </body>
 </html>

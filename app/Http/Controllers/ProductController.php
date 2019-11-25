@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -15,14 +15,13 @@ class ProductController extends Controller
     }
 
     public function insertProduct(Request $req){
-    	//dd($req->all());
-    	
-    	// $picInfo = $req->file('product_pic');
-    	// $picName = $picInfo->getClientOriginalName();
-    	// $folder = "admin/uploadedPic/";
-    	// $picInfo->move($folder,$picName);
-    	// $picPath = $folder.$picName;
+//    	dd($req->all());
+
         $this->validate($req,[
+            'product_name' => 'required',
+            'product_price' => 'required|numeric',
+            'product_qty' => 'required|numeric',
+            'cat_id' => 'required',
             'product_pic' => 'required|mimes:jpeg,png,jpg',
 
         ]);
@@ -32,7 +31,7 @@ class ProductController extends Controller
     	$product->price = $req->product_price;
     	$product->qty = $req->product_qty;
     	$product->categoryId = $req->cat_id;
-    	$product->productDescription = $req->Product_description;
+    	$product->productDescription = $req->product_description;
     	$product->productPic = 'pic';
     	$product->pbStatus = $req->pb_status;
 
@@ -52,12 +51,12 @@ class ProductController extends Controller
     	$picUpdate->productPic = $picPath;
     	$picUpdate->save();
 
-    	return redirect('/all/product');
+    	return redirect('/all/product')->with('message', 'Product Inserted successfully !');;
         
     }
 
     public function productShow(Request $x){
-    	// dd($x->product_type);
+
     	$products = DB::table('products')
     				->join('categories','categories.id','=','categoryId')
     				->select('products.*','categories.*',
@@ -153,10 +152,8 @@ class ProductController extends Controller
             $productUpdate->productPic = $picPath;
             $productUpdate->save();
 
-            return redirect('/all/product')->with('message', 'Product Updated successfully !');
-
         }
-
+        return redirect('/all/product')->with('message', 'Product Updated successfully !');
     }
 
     public function productDelete($d_id)
