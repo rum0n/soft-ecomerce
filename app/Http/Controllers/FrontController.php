@@ -47,6 +47,7 @@ class FrontController extends Controller
                 'products.pbStatus as p_status')
              ->where('products.id',$id)
             ->first();
+
         $cat_id = $products->c_id;
 
         $related_products = DB::table('products')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -14,8 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
-        
+        $cartProduct = Cart::content();
+        return view('frontEnd.cart.cart-show',compact('cartProduct'));
     }
 
     /**
@@ -43,10 +44,10 @@ class CartController extends Controller
             'id'=>$cart_product->id,
             'name'=>$cart_product->productName,
             'price'=>$cart_product->price,
-            'qty'=>$cart_product->qty,
+            'qty'=>$request->qty,
         ]);
 
-        return redirect()->route('cart_show');
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -80,7 +81,9 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
+//        Cart::update($id,$request->qty);
+//        return redirect()->route('cart.index');
     }
 
     /**

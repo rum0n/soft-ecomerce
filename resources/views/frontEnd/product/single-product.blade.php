@@ -96,7 +96,7 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <form action="{{route('add_to_cart')}}" method="post">
+            <form action="{{route('cart.store')}}" method="post">
                 @csrf
                 <input type="hidden" name="pro_id" value="{{ $singlePro->p_id }}">
                 <input type="hidden" name="qty" value="1" min="1">
@@ -149,7 +149,16 @@
                                             <span class="item_price">{{ $r_products->price  }}</span>
                                             {{--<del>$69.71</del>--}}
                                         </div>
-                                        <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+                                        <form action="{{route('cart.store')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="pro_id" value="{{ $r_products->p_id }}">
+                                            <input type="hidden" name="qty" value="1" min="1">
+                                            <div class="occasion-cart">
+                                                {{--<a href="{{route('add_to_cart')}}" class="item_add hvr-outline-out button2 btn-primary" type="submit">Add to cart</a>--}}
+
+                                                <button class="btn-primary" type="submit">Add to cart</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

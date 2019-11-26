@@ -31,8 +31,10 @@ Route::get('/singleView/{id}', 'FrontController@singleProduct')->name('single_pr
         Cart Routes
     ===========================
     */
-        Route::post('/cart/add', 'CartController@store')->name('add_to_cart');
-        Route::post('/cart/show', 'CartController@index')->name('cart_show');
+        Route::resource('/cart', 'CartController');
+
+//        Route::post('/cart/add', 'CartController@store')->name('add_to_cart');
+//        Route::post('/cart/show', 'CartController@index')->name('cart_show');
 
     /*
    ===========================
